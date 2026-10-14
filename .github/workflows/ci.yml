@@ -1,0 +1,22 @@
+
+name: FESTORA Website Workflow
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  check-website:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check website files
+        run: |
+          test -f festora/index.html
+          test -f festora/style.css
+          test -f festora/script.js
+          echo "FESTORA files verified successfully!"
